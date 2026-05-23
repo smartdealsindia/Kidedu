@@ -91,6 +91,65 @@ h1{
   box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
+.shape-section,
+.fruit-section,
+.vehicle-section,
+.learning-box{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  margin:30px auto;
+  max-width:1200px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.shape-section h2,
+.fruit-section h2,
+.vehicle-section h2,
+.learning-box h2{
+  text-align:center;
+  margin-bottom:20px;
+  color:#333;
+}
+
+.shape-grid,
+.fruit-grid,
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:18px;
+}
+
+.shape-item,
+.fruit-item,
+.vehicle-item{
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.shape-item{
+  background:#d9e8ff;
+}
+
+.fruit-item{
+  background:#ffe6cc;
+}
+
+.vehicle-item{
+  background:#d5ffd5;
+}
+
+.shape-item:hover,
+.fruit-item:hover,
+.vehicle-item:hover{
+  transform:scale(1.08);
+}
+
 .learning-box{
   background:white;
   padding:25px;
@@ -142,6 +201,30 @@ h1{
 <button onclick="speakAllAlphabets()">🔊 Speak A-Z</button>
 <button onclick="playQuiz()">🧠 Quiz Mode</button>
 <button onclick="playClap()">👏 Clap Sound</button>
+</div><div class="shape-section">
+<h2>🔷 Shape Learning 🔶</h2>
+<div class="shape-grid">
+<div class="shape-item" onclick="speakText('Circle Shape')">⚪ Circle</div>
+<div class="shape-item" onclick="speakText('Square Shape')">🟦 Square</div>
+<div class="shape-item" onclick="speakText('Triangle Shape')">🔺 Triangle</div>
+<div class="shape-item" onclick="speakText('Star Shape')">⭐ Star</div>
+</div>
+</div><div class="fruit-section">
+<h2>🍎 Fruit Learning 🍌</h2>
+<div class="fruit-grid">
+<div class="fruit-item" onclick="speakText('Apple')">🍎 Apple</div>
+<div class="fruit-item" onclick="speakText('Banana')">🍌 Banana</div>
+<div class="fruit-item" onclick="speakText('Mango')">🥭 Mango</div>
+<div class="fruit-item" onclick="speakText('Orange')">🍊 Orange</div>
+</div>
+</div><div class="vehicle-section">
+<h2>🚗 Vehicle Learning ✈️</h2>
+<div class="vehicle-grid">
+<div class="vehicle-item" onclick="speakText('Car')">🚗 Car</div>
+<div class="vehicle-item" onclick="speakText('Bus')">🚌 Bus</div>
+<div class="vehicle-item" onclick="speakText('Train')">🚂 Train</div>
+<div class="vehicle-item" onclick="speakText('Aeroplane')">✈️ Plane</div>
+</div>
 </div><div class="learning-box">
 <h2>✨ Kids Learning Section ✨</h2>
 <div class="learning-grid">
@@ -246,5 +329,11 @@ function speakText(text){
 
   speechSynthesis.speak(speech);
 }
+
+
+setInterval(()=>{
+  document.title = '🎓 Kids Learning Fun Website';
+},1000);
+
 </script></body>
 </html>
