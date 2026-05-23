@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A to Z Speak Learning</title><style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg,#ffecd2,#fcb69f);
+  min-height:100vh;
+  padding:20px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:20px;
+  color:#333;
+  font-size:40px;
+}
+
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+  max-width:1400px;
+  margin:auto;
+}
+
+.card{
+  background:white;
+  border-radius:25px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card:hover{
+  transform:translateY(-8px) scale(1.03);
+}
+
+.letter{
+  font-size:70px;
+  font-weight:bold;
+  color:#ff5a5f;
+}
+
+.word{
+  font-size:28px;
+  margin-top:10px;
+  color:#333;
+  font-weight:bold;
+}
+
+.emoji{
+  font-size:60px;
+  margin-top:15px;
+}
+
+.info{
+  text-align:center;
+  margin:20px 0;
+  font-size:22px;
+  color:#222;
+  font-weight:bold;
+}
+
+.top-buttons{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.top-buttons button{
+  padding:14px 22px;
+  border:none;
+  border-radius:15px;
+  font-size:18px;
+  cursor:pointer;
+  background:#ff5a5f;
+  color:white;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.learning-box{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  margin:30px auto;
+  max-width:1200px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.learning-box h2{
+  text-align:center;
+  margin-bottom:20px;
+  color:#333;
+}
+
+.learning-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+
+.learn-item{
+  background:#fff2cc;
+  padding:18px;
+  border-radius:18px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.learn-item:hover{
+  transform:scale(1.05);
+}
+
+@media(max-width:600px){
+  .letter{
+    font-size:55px;
+  }
+
+  .word{
+    font-size:22px;
+  }
+}
+</style></head>
+<body><h1>🎓 A to Z Speak Learning 🎤</h1>
+<div class="info">Click Any Card To Hear The Sound</div><div class="top-buttons">
+<button onclick="speakAllAlphabets()">🔊 Speak A-Z</button>
+<button onclick="playQuiz()">🧠 Quiz Mode</button>
+<button onclick="playClap()">👏 Clap Sound</button>
+</div><div class="learning-box">
+<h2>✨ Kids Learning Section ✨</h2>
+<div class="learning-grid">
+<div class="learn-item" onclick="speakText('Red Colour')">🔴 Red</div>
+<div class="learn-item" onclick="speakText('Blue Colour')">🔵 Blue</div>
+<div class="learn-item" onclick="speakText('Green Colour')">🟢 Green</div>
+<div class="learn-item" onclick="speakText('One')">1️⃣ One</div>
+<div class="learn-item" onclick="speakText('Two')">2️⃣ Two</div>
+<div class="learn-item" onclick="speakText('Three')">3️⃣ Three</div>
+<div class="learn-item" onclick="speakText('Cat Sound Meow')">🐱 Cat</div>
+<div class="learn-item" onclick="speakText('Dog Sound Bark')">🐶 Dog</div>
+<div class="learn-item" onclick="speakText('Lion Roar')">🦁 Lion</div>
+</div>
+</div><div class="container" id="container"></div><script>
+const alphabetData = [
+  {letter:'A', word:'Apple', emoji:'🍎'},
+  {letter:'B', word:'Ball', emoji:'⚽'},
+  {letter:'C', word:'Cat', emoji:'🐱'},
+  {letter:'D', word:'Dog', emoji:'🐶'},
+  {letter:'E', word:'Elephant', emoji:'🐘'},
+  {letter:'F', word:'Fish', emoji:'🐟'},
+  {letter:'G', word:'Grapes', emoji:'🍇'},
+  {letter:'H', word:'Hen', emoji:'🐔'},
+  {letter:'I', word:'Ice Cream', emoji:'🍦'},
+  {letter:'J', word:'Jug', emoji:'🏺'},
+  {letter:'K', word:'Kite', emoji:'🪁'},
+  {letter:'L', word:'Lion', emoji:'🦁'},
+  {letter:'M', word:'Monkey', emoji:'🐵'},
+  {letter:'N', word:'Nest', emoji:'🪺'},
+  {letter:'O', word:'Orange', emoji:'🍊'},
+  {letter:'P', word:'Parrot', emoji:'🦜'},
+  {letter:'Q', word:'Queen', emoji:'👑'},
+  {letter:'R', word:'Rabbit', emoji:'🐰'},
+  {letter:'S', word:'Sun', emoji:'☀️'},
+  {letter:'T', word:'Tiger', emoji:'🐯'},
+  {letter:'U', word:'Umbrella', emoji:'☂️'},
+  {letter:'V', word:'Van', emoji:'🚐'},
+  {letter:'W', word:'Watch', emoji:'⌚'},
+  {letter:'X', word:'Xylophone', emoji:'🎼'},
+  {letter:'Y', word:'Yak', emoji:'🐂'},
+  {letter:'Z', word:'Zebra', emoji:'🦓'}
+];
+
+const container = document.getElementById('container');
+
+alphabetData.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  card.innerHTML = `
+    <div class="letter">${item.letter}</div>
+    <div class="word">${item.word}</div>
+    <div class="emoji">${item.emoji}</div>
+  `;
+
+  card.addEventListener('click', () => {
+    speakText(`${item.letter} for ${item.word}`);
+  });
+
+  container.appendChild(card);
+});
+
+function speakAllAlphabets(){
+  let index = 0;
+
+  function speakNext(){
+    if(index >= alphabetData.length) return;
+
+    const item = alphabetData[index];
+    const speech = new SpeechSynthesisUtterance(`${item.letter} for ${item.word}`);
+    speech.lang = 'en-US';
+    speech.rate = 0.8;
+
+    speech.onend = () => {
+      index++;
+      speakNext();
+    };
+
+    speechSynthesis.speak(speech);
+  }
+
+  speechSynthesis.cancel();
+  speakNext();
+}
+
+function playQuiz(){
+  const random = alphabetData[Math.floor(Math.random()*alphabetData.length)];
+  speakText(`Find ${random.letter} for ${random.word}`);
+}
+
+function playClap(){
+  speakText('Great Job Kids');
+}
+
+function speakText(text){
+  speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = 'en-US';
+  speech.rate = 0.8;
+  speech.pitch = 1;
+
+  speechSynthesis.speak(speech);
+}
+</script></body>
+</html>
