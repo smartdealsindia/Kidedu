@@ -201,7 +201,89 @@ h1{
 <button onclick="speakAllAlphabets()">🔊 Speak A-Z</button>
 <button onclick="playQuiz()">🧠 Quiz Mode</button>
 <button onclick="playClap()">👏 Clap Sound</button>
-</div><div class="shape-section">
+</div>
+  
+  export default function CartoonColoringWebsite() { const characters = [ { name: 'Cute Cat', image: 'https://cdn.pixabay.com/photo/2013/07/13/10/44/cat-157314_1280.png' }, { name: 'Happy Lion', image: 'https://cdn.pixabay.com/photo/2013/07/13/10/44/lion-157290_1280.png' }, { name: 'Funny Panda', image: 'https://cdn.pixabay.com/photo/2014/04/03/10/32/panda-310167_1280.png' }, { name: 'Baby Elephant', image: 'https://cdn.pixabay.com/photo/2013/07/13/10/44/elephant-157289_1280.png' }, { name: 'Little Rabbit', image: 'https://cdn.pixabay.com/photo/2013/07/13/10/44/rabbit-157311_1280.png' }, { name: 'Smiling Monkey', image: 'https://cdn.pixabay.com/photo/2013/07/13/10/44/monkey-157304_1280.png' } ];
+
+const speak = (text) => { const speech = new SpeechSynthesisUtterance(text); speech.rate = 0.9; speech.pitch = 1; window.speechSynthesis.speak(speech); };
+
+const openDrawing = (name) => { speak(name + ' coloring page'); };
+
+return ( <div className="min-h-screen bg-gradient-to-b from-pink-200 to-blue-200 p-5"> <div className="max-w-7xl mx-auto"> <h1 className="text-5xl font-bold text-center text-purple-700 mb-3"> Cartoon Character Colour Game </h1>
+
+<p className="text-center text-xl mb-10 text-gray-700">
+      Tap colours and decorate cute cartoon animals 🎨
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {characters.map((char, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-3xl shadow-2xl p-5 text-center hover:scale-105 transition duration-300"
+        >
+          <img
+            id={`img-${index}`}
+            src={char.image}
+            alt={char.name}
+            className="w-52 h-52 mx-auto object-contain border-4 border-black p-4 bg-white grayscale contrast-200"
+            onClick={() => speak(char.name)}
+          />
+
+          <h2 className="text-2xl font-bold mt-4 text-pink-600">
+            {char.name}
+          </h2>
+
+          <button
+            onClick={() => speak(char.name)}
+            className="mt-3 bg-purple-600 text-white px-5 py-2 rounded-full shadow-lg hover:bg-purple-700"
+          >
+            🔊 Speak Name
+          </button>
+
+          <div className="mt-5">
+            <button
+              onClick={() => openDrawing(char.name)}
+              className="bg-pink-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-lg hover:scale-105 transition"
+            >
+              🎨 Start Colouring
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="mt-12 bg-white rounded-3xl shadow-2xl p-8 text-center">
+      <h2 className="text-3xl font-bold text-blue-700 mb-4">
+        Kids Learning Features
+      </h2>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-6">
+        <div className="bg-yellow-100 p-4 rounded-2xl text-xl font-bold">
+          🎨 Colour Learning
+        </div>
+
+        <div className="bg-pink-100 p-4 rounded-2xl text-xl font-bold">
+          🔊 Voice Speaking
+        </div>
+
+        <div className="bg-green-100 p-4 rounded-2xl text-xl font-bold">
+          🐼 Cartoon Animals
+        </div>
+
+        <div className="bg-blue-100 p-4 rounded-2xl text-xl font-bold">
+          📱 Mobile Friendly
+        </div>
+      </div>
+    </div>
+
+    <div className="text-center mt-10 text-lg font-semibold text-gray-700">
+      Made for Kids Learning & Fun 🌈
+    </div>
+  </div>
+</div>
+
+); }
+  <div class="shape-section">
 <h2>🔷 Shape Learning 🔶</h2>
 <div class="shape-grid">
 <div class="shape-item" onclick="speakText('Circle Shape')">⚪ Circle</div>
